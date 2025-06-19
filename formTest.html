@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Form with Validation</title>
+    <style>
+
+    </style>
+
+  </head>
+  <body>
+    <form id="formOne">
+    <h1>Форма с валидацией</h1>
+    <p>
+      Поля ниже должны быть заполнены
+    </p>
+
+    <input type="email" name="email" placeholder="Введите почту" required="email">
+    <input type="password" name="password" placeholder="Пароль" required="password" pattern="[A-Za-z0-9]+" maxlength="4">
+    <select name="list" size="1" value="" required="country">
+      <option value="ru">I'am from RUS</option>
+      <option value="eng">I'am from US</option>
+      <option value="non" selected="selected">Выберите страну</option>
+    </select>
+    <button type="submit">Отправить данные</button>
+    </form>
+    
+    <script>
+      function checkCountry (country) {
+        if (country === "eng") { 
+          alert ("Не та страна");
+          return false;
+          };
+      if (country === "non") { 
+          alert ("Не выбрали страну");
+          return false; // обе ошибки
+          };
+
+        return true; //возвращает тру - значит ру
+        };
+
+        document.getElementById("formOne").addEventListener("submit" , function(event) {
+          event.preventDefault(); //болок отправки
+          
+          const country = document.querySelector('select[name="list"]').value;
+          if (checkCountry(country)) { //проверяет возвращает ли функция чекКантри значение тру в
+            alert("Форма отправлена");
+          }
+        });
+
+    </script>
+  </body>
+</html>
